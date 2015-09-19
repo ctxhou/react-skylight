@@ -88,7 +88,7 @@ var SkyLight = React.createClass({
                         <div style={headerStyle}>{this.props.title}</div>
                         <a role="button" className={closeBtnClass} style={closeButtonStyle} onClick={this.hide}>&times;</a>
                     </div>
-                    <div style={contentStyle} ref="childComponent">
+                    <div style={contentStyle}>
                         {this.props.children}
                     </div>
                 </div>
