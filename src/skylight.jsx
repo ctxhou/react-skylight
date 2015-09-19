@@ -1,5 +1,6 @@
 var React = require('react');
 var styles = require('./styles');
+var classNames = require('./classNames');
 var extend = require('util')._extend;
 
 var SkyLight = React.createClass({
@@ -56,9 +57,14 @@ var SkyLight = React.createClass({
 
         var overlay;
 
+        // style
         var dialogStyles = extend(styles.dialogStyles, this.props.dialogStyles);
         var overlayStyles = extend(styles.overlayStyles, this.props.overlayStyles);
         var closeButtonStyle = extend(styles.closeButtonStyle, this.props.closeButtonStyle);
+        var headerWrapper = extend(styles.headerWrapper, this.props.headerWrapper);
+        var headerStyle = extend(styles.headerStyle, this.props.headerStyle);
+        // className
+        var closeBtnClass = extend(classNames.closeBtnClass, this.props.closeBtnClass);
 
         if (this.state.isVisible) {
             overlayStyles.display = 'block';
@@ -76,8 +82,10 @@ var SkyLight = React.createClass({
             <section className="skylight-wrapper">
                 {overlay}
                 <div style={dialogStyles}>
-                    <a role="button" style={closeButtonStyle} onClick={this.hide}>&times;</a>
-                    <h2>{this.props.title}</h2>
+                    <div style={headerWrapper}>
+                        <div style={headerStyle}>{this.props.title}</div>
+                        <a role="button" className={closeBtnClass} style={closeButtonStyle} onClick={this.hide}>&times;</a>
+                    </div>
                     {this.props.children}
                 </div>
             </section>

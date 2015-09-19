@@ -11,7 +11,6 @@ module.exports = {
     },
     dialogStyles: {
         width: '50%',
-        height: '400px',
         position: 'fixed',
         top: '50%',
         left: '50%',
@@ -28,5 +27,11 @@ module.exports = {
         float: 'right',
         fontSize: '1.6em',
         margin: '-15px 0'
+    },
+    headerStyle: {
+
+    },
+    headerWrapper: {
+
     }
 };
