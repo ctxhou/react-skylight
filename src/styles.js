@@ -33,5 +33,8 @@ module.exports = {
     },
     headerWrapper: {
 
+    },
+    closeButtonStyle: {
+        
     }
 };

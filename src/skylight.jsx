@@ -52,6 +52,7 @@ var SkyLight = React.createClass({
         if (prevState.isVisible && !this.state.isVisible && this.props.afterClose) {
             this.props.afterClose();
         }
+        // adjust height with the children height
     },
     render: function () {
 
@@ -63,6 +64,7 @@ var SkyLight = React.createClass({
         var closeButtonStyle = extend(styles.closeButtonStyle, this.props.closeButtonStyle);
         var headerWrapper = extend(styles.headerWrapper, this.props.headerWrapper);
         var headerStyle = extend(styles.headerStyle, this.props.headerStyle);
+        var contentStyle = extend(styles.contentStyle, this.props.contentStyle);
         // className
         var closeBtnClass = extend(classNames.closeBtnClass, this.props.closeBtnClass);
 
@@ -81,12 +83,14 @@ var SkyLight = React.createClass({
         return (
             <section className="skylight-wrapper">
                 {overlay}
-                <div style={dialogStyles}>
+                <div style={dialogStyles} ref="dialog">
                     <div style={headerWrapper}>
                         <div style={headerStyle}>{this.props.title}</div>
                         <a role="button" className={closeBtnClass} style={closeButtonStyle} onClick={this.hide}>&times;</a>
                     </div>
-                    {this.props.children}
+                    <div style={contentStyle} ref="childComponent">
+                        {this.props.children}
+                    </div>
                 </div>
             </section>
         )
