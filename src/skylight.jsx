@@ -13,7 +13,8 @@ var SkyLight = React.createClass({
         afterClose: React.PropTypes.func,
         overlayStyles: React.PropTypes.object,
         dialogStyles: React.PropTypes.object,
-        closeButtonStyle: React.PropTypes.object
+        closeButtonStyle: React.PropTypes.object,
+        onOverlayClick: React.PropTypes.func
     },
     getDefaultProps: function () {
         return {
@@ -34,6 +35,10 @@ var SkyLight = React.createClass({
     },
     hide: function () {
         this.setState({isVisible: false});
+    },
+
+    onOverlayClick: function() {
+        this.props.onOverlayClick ? this.props.onOverlayClick() : this.props.afterClose();
     },
     componentWillUpdate: function (nextProps, nextState) {
         if (nextState.isVisible && !this.state.isVisible && this.props.beforeOpen) {
@@ -64,7 +69,7 @@ var SkyLight = React.createClass({
         var closeButtonStyle = extend(styles.closeButtonStyle, this.props.closeButtonStyle);
         var headerWrapper = extend(styles.headerWrapper, this.props.headerWrapper);
         var headerStyle = extend(styles.headerStyle, this.props.headerStyle);
-        var contentStyle = extend(styles.contentStyle, this.props.contentStyle);
+        var contentStyle = this.props.contentStyle || styles.contentStyle;
         // className
         var closeBtnClass = extend(classNames.closeBtnClass, this.props.closeBtnClass);
 
@@ -77,13 +82,13 @@ var SkyLight = React.createClass({
         }
 
         if (this.props.showOverlay) {
-            overlay = (<div style={overlayStyles}></div>);
+            overlay = (<div onClick={this.onOverlayClick} style={overlayStyles}></div>);
         }
 
         return (
             <section className="skylight-wrapper">
                 {overlay}
-                <div style={dialogStyles} ref="dialog">
+                <div style={dialogStyles}>
                     <div style={headerWrapper}>
                         <div style={headerStyle}>{this.props.title}</div>
                         <a role="button" className={closeBtnClass} style={closeButtonStyle} onClick={this.hide}>&times;</a>
