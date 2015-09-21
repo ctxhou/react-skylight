@@ -57,12 +57,28 @@ var SkyLight = React.createClass({
         if (prevState.isVisible && !this.state.isVisible && this.props.afterClose) {
             this.props.afterClose();
         }
+
+        document.body.style.overflow = 'hidden';
         // adjust height with the children height
     },
+
+    componentWillUnmount: function() {
+        document.body.style.overflow = 'auto';
+    },
+
     render: function () {
 
         var overlay;
-
+        var wrapperStyle = {
+          position: 'fixed',
+          top: '0',
+          left: '0',
+          right: '0',
+          bottom: '0',
+          margin: 'auto',
+          zIndex: 100,
+          overflow: 'hidden'
+        }
         // style
         var dialogStyles = extend(styles.dialogStyles, this.props.dialogStyles);
         var overlayStyles = extend(styles.overlayStyles, this.props.overlayStyles);
@@ -86,7 +102,7 @@ var SkyLight = React.createClass({
         }
 
         return (
-            <section className="skylight-wrapper">
+            <section style={wrapperStyle}>
                 {overlay}
                 <div style={dialogStyles}>
                     <div style={headerWrapper}>
