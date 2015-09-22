@@ -27,7 +27,7 @@ var SkyLight = React.createClass({
     },
     getInitialState: function () {
         return {
-            isVisible: false
+            isVisible: true
         };
     },
     show: function () {
@@ -86,12 +86,13 @@ var SkyLight = React.createClass({
         var headerWrapper = extend(styles.headerWrapper, this.props.headerWrapper);
         var headerStyle = extend(styles.headerStyle, this.props.headerStyle);
         var contentStyle = this.props.contentStyle || styles.contentStyle;
+        var wrapperStyle = extend(styles.wrapperStyle || this.props.wrapperStyle);
         // className
         var closeBtnClass = extend(classNames.closeBtnClass, this.props.closeBtnClass);
 
         if (this.state.isVisible) {
             overlayStyles.display = 'block';
-            dialogStyles.display = 'block';
+            dialogStyles.display = 'inline-block';
         } else {
             overlayStyles.display = 'none';
             dialogStyles.display = 'none';
@@ -100,20 +101,22 @@ var SkyLight = React.createClass({
         if (this.props.showOverlay) {
             overlay = (<div onClick={this.onOverlayClick} style={overlayStyles}></div>);
         }
-
+        
         return (
-            <section style={wrapperStyle}>
+            <div>
                 {overlay}
-                <div style={dialogStyles}>
-                    <div style={headerWrapper}>
-                        <div style={headerStyle}>{this.props.title}</div>
-                        <a role="button" className={closeBtnClass} style={closeButtonStyle} onClick={this.hide}>&times;</a>
+                <section style={wrapperStyle}>
+                    <div style={dialogStyles}>
+                        <div style={headerWrapper}>
+                            <div style={headerStyle}>{this.props.title}</div>
+                            <a role="button" className={closeBtnClass} style={closeButtonStyle} onClick={this.hide}>&times;</a>
+                        </div>
+                        <div style={contentStyle}>
+                            {this.props.children}
+                        </div>
                     </div>
-                    <div style={contentStyle}>
-                        {this.props.children}
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
         )
     }
 });
