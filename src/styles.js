@@ -31,7 +31,7 @@ module.exports = {
         textAlign: 'left',
         verticalAlign: 'middle',
         backgroundColor: '#fff',
-        borderRadius: '2px',
+        borderRadius: '3px',
         zIndex: 100,
         position: 'relative',
         boxShadow: '0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28)'

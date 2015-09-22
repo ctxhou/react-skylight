@@ -69,16 +69,6 @@ var SkyLight = React.createClass({
     render: function () {
 
         var overlay;
-        var wrapperStyle = {
-          position: 'fixed',
-          top: '0',
-          left: '0',
-          right: '0',
-          bottom: '0',
-          margin: 'auto',
-          zIndex: 100,
-          overflow: 'hidden'
-        }
         // style
         var dialogStyles = extend(styles.dialogStyles, this.props.dialogStyles);
         var overlayStyles = extend(styles.overlayStyles, this.props.overlayStyles);
@@ -101,11 +91,11 @@ var SkyLight = React.createClass({
         if (this.props.showOverlay) {
             overlay = (<div onClick={this.onOverlayClick} style={overlayStyles}></div>);
         }
-        
+
         return (
             <div>
-                {overlay}
                 <section style={wrapperStyle}>
+                    {overlay}
                     <div style={dialogStyles}>
                         <div style={headerWrapper}>
                             <div style={headerStyle}>{this.props.title}</div>
