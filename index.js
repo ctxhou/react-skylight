@@ -1,1 +1,1 @@
-module.exports = require('./src/skylight.jsx');
+module.exports = require('./lib/skylight');
